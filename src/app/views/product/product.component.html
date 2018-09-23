@@ -1,0 +1,26 @@
+<div class="flex-p">
+  <mat-card>
+    <mat-card-header fxLayoutAlign="center">
+      <mat-card-subtitle><h2>Product Form Field (template driven form)</h2></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center">
+
+      <mat-form-field>
+        <input type="number" matInput [(ngModel)]="product.id" placeholder="ID" disabled>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="product.productName" placeholder="Product Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="product.price" placeholder="Price">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="product.quantity" placeholder="Quantity">
+      </mat-form-field>
+      <button mat-flat-button type="submit" (click)="submit()">SUBMIT</button>
+
+    </mat-card-content>
+  </mat-card>
+
+  {{product | json}}
+</div>
