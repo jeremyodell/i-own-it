@@ -15,9 +15,16 @@
           <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z12 box-content-inner">
             <span class="box-content-header">Register member</span>
             <mat-form-field class="w-100">
-              <input matInput placeholder="Full Name" formControlName="name">
-              <mat-error *ngIf="form.controls.name.errors?.required">Full Name is required</mat-error>
-              <mat-error *ngIf="form.controls.name.hasError('minlength')">Full Name isn't long enough, minimum of 3
+              <input matInput placeholder="First Name" formControlName="name">
+              <mat-error *ngIf="form.controls.firstName.errors?.required">Full Name is required</mat-error>
+              <mat-error *ngIf="form.controls.firstName.hasError('minlength')">Full Name isn't long enough, minimum of 3
+                characters
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Last Name" formControlName="name">
+              <mat-error *ngIf="form.controls.lastName.errors?.required">Full Name is required</mat-error>
+              <mat-error *ngIf="form.controls.lastName.hasError('minlength')">Full Name isn't long enough, minimum of 3
                 characters
               </mat-error>
             </mat-form-field>

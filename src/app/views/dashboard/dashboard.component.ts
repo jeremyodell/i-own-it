@@ -32,21 +32,30 @@ const PRODUCT_DATA: ProductModel[] = [
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [ 'select', 'id', 'productName', 'price', 'quantity', 'timestamp', 'edit' ];
-  dataSource = new MatTableDataSource(PRODUCT_DATA);
+  dataSource;
   selection = new SelectionModel<ProductModel>(true, []);
   selectedProducts = false;
 
   private sub: Subscription;
+  private dataSub: Subscription;
 
-  constructor(private appSettings: AppSettings, private router: Router, private product: ProductService) {
+  constructor(private appSettings: AppSettings,
+    private router: Router,
+    private product: ProductService) {
+
   }
 
   ngOnInit() {
-    console.log('in the on init of the dashboard');
+    console.log('*****in the on init of the dashboard****');
     this.appSettings.settings.loadingSpinner = false;
     this.sub = this.selection.changed.subscribe((data) => {
       console.log('here is the changed event data ', data);
       this.selectedProducts = this.selection.hasValue();
+    });
+    this.dataSub = this.product.getAllProducts().subscribe((data) => {
+      console.log('got the data', data);
+      const productArray = this.product.convertProducts(data);
+      this.dataSource = new MatTableDataSource(productArray);
     });
   }
 

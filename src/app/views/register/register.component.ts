@@ -15,7 +15,8 @@ export class RegisterComponent {
   constructor(public appSettings: AppSettings, public fb: FormBuilder, public router: Router) {
     this.settings = this.appSettings.settings;
     this.form = this.fb.group({
-      'name': [ null, Validators.compose([ Validators.required, Validators.minLength(3) ]) ],
+      'firstName': [ null, Validators.compose([ Validators.required, Validators.minLength(3) ]) ],
+      'lastName': [ null, Validators.compose([ Validators.required, Validators.minLength(3) ]) ],
       'email': [ '', Validators.required ],
       'password': [ '', Validators.required ],
       'confirmPassword': [ '', Validators.required ]
