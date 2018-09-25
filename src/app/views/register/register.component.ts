@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { RegisterService } from './register.service';
+import { Component, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppSettings } from '../../app.settings';
@@ -8,11 +9,14 @@ import { Settings } from '../../app.settings.model';
   selector: 'app-register',
   templateUrl: './register.component.html'
 })
-export class RegisterComponent {
+export class RegisterComponent implements AfterViewInit {
   public form: FormGroup;
   public settings: Settings;
 
-  constructor(public appSettings: AppSettings, public fb: FormBuilder, public router: Router) {
+  constructor(public appSettings: AppSettings,
+    public fb: FormBuilder,
+    public router: Router,
+    private service: RegisterService) {
     this.settings = this.appSettings.settings;
     this.form = this.fb.group({
       'firstName': [ null, Validators.compose([ Validators.required, Validators.minLength(3) ]) ],
@@ -25,6 +29,7 @@ export class RegisterComponent {
 
   public onSubmit(values: Object): void {
     if (this.form.valid) {
+      this.service.registerUser(values);
       this.router.navigate([ '/login' ]);
     }
   }
