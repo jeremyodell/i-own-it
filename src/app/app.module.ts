@@ -15,6 +15,8 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ProductComponent } from './views/product/product.component';
 import { HistoryComponent } from './views/history/history.component';
+import { HTTP_INTERCEPTORS } from '../../node_modules/@angular/common/http';
+import { AuthInterceptor } from './core/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,11 @@ import { HistoryComponent } from './views/history/history.component';
     CoreModule,
     DashboardModule,
   ],
-  providers: [ AppSettings ],
+  providers: [ AppSettings,     {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  } ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule { }

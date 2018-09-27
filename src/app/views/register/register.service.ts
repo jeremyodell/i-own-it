@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ export class RegisterService {
   constructor(private httpClient: HttpClient) { }
 
   registerUser(values: any): void {
-    this.httpClient.post('http://localhost:3000/users/register', values)
+    this.httpClient.post('http://localhost:3001/api/users/register', values)
       .subscribe(
         (data) => {
         console.log('here is the return data', data);
@@ -20,5 +20,5 @@ export class RegisterService {
         }
       );
 
-  }
+    }
 }

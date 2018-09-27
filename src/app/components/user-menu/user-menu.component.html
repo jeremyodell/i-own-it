@@ -4,7 +4,7 @@
 
 <mat-menu #userMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu user-menu">
 
-  <a mat-menu-item routerLink="login">
+  <a *ngIf="isLoggedIn" routerLink="login">
     <mat-icon>help</mat-icon>
     <span>Login</span>
   </a>

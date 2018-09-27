@@ -1,3 +1,4 @@
+import { UserService } from './../../core/services/user.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class UserMenuComponent implements OnInit {
-  constructor(private router: Router) {
+  public isLoggedIn = false;
+  constructor(private router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -16,5 +18,13 @@ export class UserMenuComponent implements OnInit {
 
   login(): void {
     this.router.navigate([ '/login' ]);
+  }
+
+  logout(): void {
+    this.userService.logout();
+  }
+
+  check(): void {
+    this.isLoggedIn = this.userService.isLoggedIn();
   }
 }
